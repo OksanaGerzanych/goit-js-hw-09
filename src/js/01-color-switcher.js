@@ -9,7 +9,7 @@ const btnStop = document.querySelector('[data-stop]');
 btnStart.addEventListener('click', onClick);
 btnStop.addEventListener('click', onClickStop);
 
-function onClick(event) {
+function onClick() {
     btnStart.disabled = true;
     btnStop.disabled = false;
     timerId = setInterval(() => {
@@ -20,7 +20,8 @@ function onClick(event) {
 } 
 
 function onClickStop() {
+    clearInterval(timerId);
     btnStart.disabled = false;
     btnStop.disabled = true;
-    clearInterval(timerId);
+  
 }
