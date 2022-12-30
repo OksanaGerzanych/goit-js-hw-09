@@ -11,15 +11,6 @@ const dataSeconds = document.querySelector('span[data-seconds]')
 let timerId = null;
 startBtn.disabled = true;
 
-const field = document.querySelector('.field')
-timer.style.dispay = "flex";
-field.style.dispay = "flex";
-field.style.alignItems= "center";
-field.style.flexDirection= "column";
-field.style.marginTop = "20px";
-field.style.marginRight = "40px";    
-
-
 const input = document.querySelector('#datetime-picker');
 const options = {
 enableTime: true,
