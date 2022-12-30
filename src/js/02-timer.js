@@ -11,6 +11,14 @@ const dataSeconds = document.querySelector('span[data-seconds]')
 let timerId = null;
 startBtn.disabled = true;
 
+const field = document.querySelector('.field')
+timer.style.dispay = "flex";
+field.style.dispay = "flex";
+field.style.alignItems= "center";
+field.style.flexDirection= "column";
+field.style.marginTop = "20px";
+field.style.marginRight = "40px";    
+
 
 const input = document.querySelector('#datetime-picker');
 const options = {
@@ -19,7 +27,7 @@ time_24hr: true,
 defaultDate: new Date(),
 minuteIncrement: 1,
     onClose(selectedDates) {
-    if (selectedDates[0] <= new Date()) {
+    if (selectedDates[0] <= new Date) {
     Notiflix.Notify.failure('Please choose a date in the future');
         startBtn.disabled = true;     
     } else 
@@ -56,31 +64,34 @@ console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20
 startBtn.addEventListener('click', onClick);
 
 
-// if (countdown >= 0) {
-//       let timeObject = convertMs(countdown);
-//       days.textContent = addLeadingZero(timeObject.days); 
-
 
 function onClick() {
-   
-
     timerId = setInterval(() => {
-    
-    // const todayTime = new Date().getTime();
-    // const count = selectedDate;
-    //     const countDown = count - todayTime;
-     let countDown = new Date().getTime() - new Date();
-    if (countDown < 1000) {
-        clearInterval(timerId);
-        }
-        let time = convertMs(countDown)
+
+    let countDown = new Date(input.value) - new Date();
+        if (countDown >= 0) {
+            let time = convertMs(countDown)
    
-   dataDays.textContent = addLeadingZero(time.dataDays);
-   dataHours.textContent = addLeadingZero(time.dataHours);
-   dataMinutes.textContent = addLeadingZero(time.dataMinutes);
-   dataSeconds.textContent = addLeadingZero(time.dataSeconds);
+            dataDays.textContent = addLeadingZero(time.days);
+            dataHours.textContent = addLeadingZero(time.hours);
+            dataMinutes.textContent = addLeadingZero(time.minutes);
+            dataSeconds.textContent = addLeadingZero(time.seconds);
+            if (countDown <= 10000) {
+             timer.style.color = 'tomato';
+               }
+        } else {
+      Notiflix.Notify.success('CountDown finished');
+      timer.style.color = 'black';
+      clearInterval(timerId);
+     }
+       
   }, 1000)
 }
+
+
+
+
+
 
 
 
